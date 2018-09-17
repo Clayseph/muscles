@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const MongoClient = require('mongoose')
 var Schema = mongoose.Schema;
 
 let workoutSchema = new Schema(
@@ -30,5 +29,22 @@ router.route('/add')
                 res.send('Workout Saved');
             }
         })
-    })
+    });
+
+router.route('/update')
+    .put((req,res)=>{
+        const query = {'_id': req.body._id}
+        console.log(req.body)
+        Workouts.findOneAndUpdate(
+            query,
+            req.body,
+            {new:true},
+            (err, workout)=>{
+                if (err) {
+                    return res.status(500);
+                }
+                return res.send(workout);
+            }
+            )
+    });
     module.exports = router;

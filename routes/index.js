@@ -6,8 +6,9 @@ const MongoClient = require('mongoose')
 // mongoose.connect('mongodb://captaincmy2:Polloloco1@ds157901.mlab.com:57901/core-fitness');
 /* GET home page. */
 let connectionString = `mongodb://captaincmy2:${process.env.password}@ds157901.mlab.com:57901/core-fitness`;
-mongoose.connect(connectionString);
-var db = mongoose.connection;
+
+MongoClient.connect(connectionString,{ useNewUrlParser: true })
+var db = MongoClient.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log(' connected!')
