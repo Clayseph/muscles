@@ -47,4 +47,19 @@ router.route('/update')
             }
             )
     });
+
+router.route('/remove')
+.delete((req,res)=>{
+    const query = {'_id': req.body._id}
+    Workouts.findOneAndRemove(
+        query,
+        req.body,
+        (err)=>{
+            if (err) {
+                return res.status(500);
+            }
+            return res.send("Successfully Removed");
+        }
+        )
+});
     module.exports = router;
