@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 let workoutSchema = new Schema(
     {
+        userId: String,
         name: String,
         reps: Number,
         sets: Number,
@@ -18,6 +19,14 @@ router.get('/', (req,res,next)=>{
         res.json(workouts);
     });
 });
+
+router.route('/user')
+    .post((req,res)=>{
+        Workouts.find({userId: req.body.userId},(err,workouts)=>{
+            res.json(workouts);
+            console.log(workouts)
+        })
+    })
 
 router.route('/add')
     .post((req,res)=>{
