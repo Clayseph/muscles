@@ -1,14 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var ModelHelper = require('../models/modelHelper');
 
-let userSchema = new Schema({
-  username: String,
-  password: String,
-});
-
-let Users = mongoose.model('Users', userSchema);
+let Users = ModelHelper.getUserModel();
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {

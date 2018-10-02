@@ -1,19 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var ModelHelper = require('../models/modelHelper');
 
-let workoutSchema = new Schema(
-    {
-        userId: String,
-        name: String,
-        reps: Number,
-        sets: Number,
-        weight: Number
-    }
-);
-let Workouts = mongoose.model('Workouts', workoutSchema);
-
+let Workouts = ModelHelper.getWorkoutModel();
 router.get('/', (req,res,next)=>{
     Workouts.find((err,workouts)=>{
         res.json(workouts);
@@ -24,7 +13,6 @@ router.route('/user')
     .post((req,res)=>{
         Workouts.find({userId: req.body.userId},(err,workouts)=>{
             res.json(workouts);
-            console.log(workouts)
         })
     })
 
