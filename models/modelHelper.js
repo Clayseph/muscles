@@ -1,6 +1,15 @@
 const mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+let exerciseSchema = new Schema({
+    userId: String,
+    workoutId: String,
+    name: String,
+    reps: Number,
+    sets: Number,
+    weight: Number
+});
+
 let userSchema = new Schema({
     username: String,
     password: String,
@@ -9,12 +18,14 @@ let userSchema = new Schema({
 let workoutSchema = new Schema(
     {
         userId: String,
-        name: String,
-        reps: Number,
-        sets: Number,
-        weight: Number
+        name: String
     }
 );
+
+let getExerciseModel = () =>{
+    let Exercises = mongoose.model('Exercises', exerciseSchema);
+    return(Exercises);
+}
 
 let getUserModel = () =>{
     let Users = mongoose.model('Users', userSchema);
@@ -27,5 +38,6 @@ let getWorkoutModel = () =>{
     return (Workouts);
 }
 
-module.exports.getWorkoutModel = getWorkoutModel;
+module.exports.getExerciseModel = getExerciseModel;
 module.exports.getUserModel = getUserModel;
+module.exports.getWorkoutModel = getWorkoutModel;

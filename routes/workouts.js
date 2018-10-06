@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var ModelHelper = require('../models/modelHelper');
 
+var ModelHelper = require('../models/modelHelper');
 let Workouts = ModelHelper.getWorkoutModel();
+
 router.get('/', (req,res,next)=>{
     Workouts.find((err,workouts)=>{
         res.json(workouts);
