@@ -39,7 +39,7 @@ router.route('/add')
 router.route('/remove')
     .delete((req,res)=>{
         const query = {'_id': req.body._id}
-        Workouts.findOneAndRemove(
+        Exercises.findOneAndRemove(
             query,
             req.body,
             (err)=>{
