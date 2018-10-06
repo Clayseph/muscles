@@ -36,6 +36,22 @@ router.route('/add')
         })
     }); 
 
+router.route('/update')
+    .put((req,res)=>{
+        const query = {'_id': req.body._id}
+        console.log(req.body)
+        Exercises.findOneAndUpdate(
+            query,
+            req.body,
+            {new:true},
+            (err, exercise )=>{
+                if (err) {
+                    return res.status(500);
+                }
+                return res.send(exercise);
+            })
+});
+
 router.route('/remove')
     .delete((req,res)=>{
         const query = {'_id': req.body._id}
