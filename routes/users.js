@@ -18,6 +18,7 @@ router.route('/login')
     password: req.body.password
   }).then((user,err) => {
     if(err){
+      console.log('Login Error',err)
       res.send(err)
     }else{
       res.send(user)
