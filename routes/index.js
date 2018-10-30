@@ -3,7 +3,6 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const MongoClient = require('mongoose')
-// mongoose.connect('mongodb://captaincmy2:Polloloco1@ds157901.mlab.com:57901/core-fitness');
 /* GET home page. */
 let connectionString = `mongodb://captaincmy2:${process.env.password}@ds157901.mlab.com:57901/core-fitness`;
 
